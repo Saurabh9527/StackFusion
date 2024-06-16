@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 
 const corsOption = {
-    origin: process.env.FRONTEND_URL,
+    origin: "*",
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }
