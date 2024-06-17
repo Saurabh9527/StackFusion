@@ -9,9 +9,11 @@ import userRoute from './router/userRoute.js'
 dotenv.config()
 app.use(bodyParser.json());
 
+console.log(process.env.FRONTEND_URL,);
+
 
 const corsOption = {
-    origin: "*",
+    origin: process.env.FRONTEND_URL,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }
