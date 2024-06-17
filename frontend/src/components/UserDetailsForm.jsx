@@ -1,9 +1,10 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_END_POINT, calculateAge } from '../utils/constant';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { UserContext } from '../context/UserContext';
 
 const UserDetailsForm = () => {
 
@@ -15,6 +16,7 @@ const UserDetailsForm = () => {
     });
     const [errorMessage, setErrorMessage] = useState('');
     const [isLoading , setIsLoading] = useState(false);
+    const { setUser } = useContext(UserContext);
     const navigate = useNavigate(); 
 
     const handleChange = (e) => {
@@ -46,7 +48,7 @@ const UserDetailsForm = () => {
             return;
         }
 
-        if (contactNumber.length !== 10) {  //* check number must be 10 and start with 0
+        if (contactNumber.length !== 10 || contactNumber.startsWith('0')) { 
             setIsLoading(false);
             return;
         }
@@ -62,12 +64,11 @@ const UserDetailsForm = () => {
 
             if(res.data.success){
                 toast.success(res.data.message)
-                console.log(res.data.user);
-                navigate("/userdetails" , {user: res.data.user})
+                setUser(res.data.user);
+                navigate("/userdetails");
             }else{
                 toast.error(res.data.message)
             }
-            console.log(res);
 
         } catch (error) {
             if (error.response) {

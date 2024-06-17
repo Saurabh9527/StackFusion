@@ -1,11 +1,16 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../context/UserContext';
+import UserDetails from './UserDetails';
 
-const DisplayUserDetails = ({user}) => {
-  //console.log(user);
+const DisplayUserDetails = () => {
+  const { user } = useContext(UserContext);
   return (
     <div>
-      <h1>hello </h1>
+      <div className='p-6'>
+      <h1 className="text-2xl font-bold mb-4 text-blue-800 text-center">User Details</h1>
+      <UserDetails user ={user}/>
+      </div>
     </div>
   )
 }

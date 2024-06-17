@@ -9,6 +9,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import DisplayUserDetails from './components/DisplayUserDetails.jsx';
+import { UserProvider } from './context/UserContext.jsx';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <UserProvider>
     <RouterProvider router={router} />
     <Toaster />
+    </UserProvider>
   </React.StrictMode>,
 )

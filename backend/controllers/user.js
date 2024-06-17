@@ -23,12 +23,12 @@ export const Form = async (req, res)=>{
         });
         }
     
-        const mobileRegex = /^\d{10}$/;     //* check number must be 10 and start with 0
+        const mobileRegex = /^[1-9]\d{9}$/;  
         if (!mobileRegex.test(contactNumber)) {
-          return res.status(400).json({ 
-            message: "Mobile number must be 10 digits",
-            success: false,
-        });
+            return res.status(400).json({
+                message: "Mobile number must be 10 digits",
+                success: false,
+            });
         }
 
         const mailOptions = {
@@ -53,7 +53,6 @@ export const Form = async (req, res)=>{
                 user: userResponse
             });
         } catch (emailError) {
-           // console.error('Error sending email:', emailError);
             res.status(500).json({ 
                 message: 'An error occurred while sending the confirmation email.',
                 success: false, 
@@ -61,7 +60,6 @@ export const Form = async (req, res)=>{
         }
         
     } catch (error) {
-        console.log(error);
         res.status(500).json({ 
             message: 'Internal Server Error',
             success: false,
