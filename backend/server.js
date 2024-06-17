@@ -19,6 +19,10 @@ const corsOption = {
 app.use(cors(corsOption));  
 app.use('/user', userRoute)
 
+app.get("/sample", (req, res)=>{
+  res.status(200).send("Sample");
+})
+
 
 const port = process.env.PORT || 8080
 app.listen(port, ()=>{
