@@ -20,7 +20,7 @@ app.use(cors(corsOption));
 app.use('/user', userRoute)
 
 app.get("/sample", (req, res)=>{
-  res.status(200).send("Sample");
+  res.send("Sample");
 })
 
 
