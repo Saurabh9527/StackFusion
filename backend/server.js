@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 
 const corsOption = {
-    origin: "*",
+    origin: "https://stack-fusion-three.vercel.app/",
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }
